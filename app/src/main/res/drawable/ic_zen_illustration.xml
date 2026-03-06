@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ZenGraph onboarding illustration: minimal seated meditation figure with lotus -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="260dp"
+    android:height="220dp"
+    android:viewportWidth="260"
+    android:viewportHeight="220">
+
+    <!-- Soft background circle -->
+    <path
+        android:fillColor="#E8F9F7"
+        android:pathData="M130,108 m-90,0 a90,90 0 1,0 180,0 a90,90 0 1,0 -180,0" />
+
+    <!-- Outer ring accent (dashed feel via thin ring) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#2EC4B6"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M130,108 m-76,0 a76,76 0 1,0 152,0 a76,76 0 1,0 -152,0"
+        android:alpha="0.2" />
+
+    <!-- === Seated person - minimal / geometric === -->
+
+    <!-- Crossed legs (lotus diamond shape) -->
+    <path
+        android:fillColor="#CBD5E0"
+        android:pathData="M105,172 Q120,155 130,152 Q140,155 155,172 Q143,176 130,177 Q117,176 105,172 Z" />
+
+    <!-- Left knee bump -->
+    <path
+        android:fillColor="#B2BFCF"
+        android:pathData="M108,170 Q110,160 118,158 Q115,168 108,170 Z" />
+
+    <!-- Right knee bump -->
+    <path
+        android:fillColor="#B2BFCF"
+        android:pathData="M152,170 Q150,160 142,158 Q145,168 152,170 Z" />
+
+    <!-- Torso - clean rectangle rounded -->
+    <path
+        android:fillColor="#A0AEC0"
+        android:pathData="M118,118 Q118,108 130,106 Q142,108 142,118 L140,153 Q130,156 120,153 Z" />
+
+    <!-- Arms resting on knees - left -->
+    <path
+        android:fillColor="#CBD5E0"
+        android:pathData="M118,128 Q110,138 108,150 L116,152 Q117,142 122,132 Z" />
+
+    <!-- Arms resting on knees - right -->
+    <path
+        android:fillColor="#CBD5E0"
+        android:pathData="M142,128 Q150,138 152,150 L144,152 Q143,142 138,132 Z" />
+
+    <!-- Left hand (small circle on knee) -->
+    <path
+        android:fillColor="#FFD3B6"
+        android:pathData="M108,152 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
+
+    <!-- Right hand (small circle on knee) -->
+    <path
+        android:fillColor="#FFD3B6"
+        android:pathData="M152,152 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
+
+    <!-- Neck -->
+    <path
+        android:fillColor="#FFD3B6"
+        android:pathData="M126,106 L126,100 L134,100 L134,106 Z" />
+
+    <!-- Head - clean circle -->
+    <path
+        android:fillColor="#FFD3B6"
+        android:pathData="M130,92 m-14,0 a14,14 0 1,0 28,0 a14,14 0 1,0 -28,0" />
+
+    <!-- Hair - minimal cap -->
+    <path
+        android:fillColor="#4A3728"
+        android:pathData="M116,89 Q118,78 130,76 Q142,78 144,89 Q138,84 130,83 Q122,84 116,89 Z" />
+
+    <!-- Closed eyes - peaceful lines -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#8B6F5E"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M124,91 Q126,93 128,91" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#8B6F5E"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M132,91 Q134,93 136,91" />
+
+    <!-- Gentle smile -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#C47B5A"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M125,97 Q130,100 135,97" />
+
+    <!-- === Radiating aura lines above head === -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#2EC4B6"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M130,60 L130,50"
+        android:alpha="0.7" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#2EC4B6"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M116,64 L110,56"
+        android:alpha="0.55" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#2EC4B6"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M144,64 L150,56"
+        android:alpha="0.55" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#2EC4B6"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round"
+        android:pathData="M107,71 L99,66"
+        android:alpha="0.35" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#2EC4B6"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round"
+        android:pathData="M153,71 L161,66"
+        android:alpha="0.35" />
+
+    <!-- Crown chakra dot -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M130,48 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"
+        android:alpha="0.9" />
+
+    <!-- === Lotus petals below figure === -->
+    <!-- Center petal -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M130,178 Q127,188 130,192 Q133,188 130,178 Z"
+        android:alpha="0.6" />
+    <!-- Left petal -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M130,178 Q120,182 118,188 Q127,188 130,178 Z"
+        android:alpha="0.5" />
+    <!-- Right petal -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M130,178 Q140,182 142,188 Q133,188 130,178 Z"
+        android:alpha="0.5" />
+    <!-- Far left petal -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M128,179 Q114,179 112,185 Q120,187 128,179 Z"
+        android:alpha="0.3" />
+    <!-- Far right petal -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M132,179 Q146,179 148,185 Q140,187 132,179 Z"
+        android:alpha="0.3" />
+
+    <!-- === Decorative sparkles === -->
+    <!-- Top-left sparkle -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M72,80 L73.5,75 L75,80 L80,81.5 L75,83 L73.5,88 L72,83 L67,81.5 Z"
+        android:alpha="0.55" />
+    <!-- Bottom-left small sparkle -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M80,140 L81,137 L82,140 L85,141 L82,142 L81,145 L80,142 L77,141 Z"
+        android:alpha="0.3" />
+    <!-- Top-right sparkle -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M182,74 L183.5,69 L185,74 L190,75.5 L185,77 L183.5,82 L182,77 L177,75.5 Z"
+        android:alpha="0.5" />
+    <!-- Bottom-right tiny sparkle -->
+    <path
+        android:fillColor="#2EC4B6"
+        android:pathData="M178,138 L179,135.5 L180,138 L182.5,139 L180,140 L179,142.5 L178,140 L175.5,139 Z"
+        android:alpha="0.3" />
+
+</vector>

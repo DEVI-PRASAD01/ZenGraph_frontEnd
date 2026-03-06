@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="100dp"
+    android:viewportWidth="200"
+    android:viewportHeight="100">
+    <path
+        android:strokeColor="@color/teal_accent"
+        android:strokeWidth="2"
+        android:pathData="M 20,80 L 50,60 L 80,70 L 110,40 L 140,55 L 170,30" />
+    <path
+        android:fillColor="@color/teal_accent"
+        android:pathData="M 20,80 m -3,0 a 3,3 0 1,0 6,0 a 3,3 0 1,0 -6,0
+                         M 50,60 m -3,0 a 3,3 0 1,0 6,0 a 3,3 0 1,0 -6,0
+                         M 80,70 m -3,0 a 3,3 0 1,0 6,0 a 3,3 0 1,0 -6,0
+                         M 110,40 m -3,0 a 3,3 0 1,0 6,0 a 3,3 0 1,0 -6,0
+                         M 140,55 m -3,0 a 3,3 0 1,0 6,0 a 3,3 0 1,0 -6,0
+                         M 170,30 m -3,0 a 3,3 0 1,0 6,0 a 3,3 0 1,0 -6,0" />
+</vector>

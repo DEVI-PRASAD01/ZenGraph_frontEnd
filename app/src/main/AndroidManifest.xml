@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
+
+
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ZenGraph"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AuthChoiceActivity" android:theme="@style/Theme.ZenGraph.Auth" />
+        <activity android:name=".SignupActivity" android:theme="@style/Theme.ZenGraph.Auth" />
+        <activity android:name=".LoginActivity" android:theme="@style/Theme.ZenGraph.Auth" />
+        <activity android:name=".ForgotPasswordActivity" android:theme="@style/Theme.ZenGraph.Auth" />
+        <activity android:name=".OtpActivity" android:theme="@style/Theme.ZenGraph.Auth" />
+        <activity android:name=".ResetPasswordActivity" android:theme="@style/Theme.ZenGraph.Auth" />
+        <activity android:name=".NotificationsSettingsActivity" android:exported="false" />
+        <activity android:name=".FaqActivity" android:exported="false" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".PrivacyDataActivity" />
+        <activity android:name=".SubscriptionActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".GoalSelectionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".FeelingSelectionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ExpressYourselfActivity" android:screenOrientation="portrait" />
+        <activity android:name=".AiAnalysisActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ExperienceSelectionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SessionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".AiPlanActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SessionReadyActivity" android:screenOrientation="portrait" />
+        <activity android:name=".LiveSessionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SessionCompleteActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ReflectionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PostSessionAiActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ProgressDashboardActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PersonalizedInsightsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".AiCoachChatActivity" android:screenOrientation="portrait" />
+        <activity android:name=".AnalyticsDashboardActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MeditationPlanActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ContentLibraryActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MeditationLibraryActivity" android:screenOrientation="portrait" />
+        <activity android:name=".VoiceAnalysisActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SchedulerActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ProfileSettingsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".RewardSystemActivity" android:screenOrientation="portrait" />
+        <activity android:name=".OnboardingWelcomeActivity" android:screenOrientation="portrait" android:theme="@style/Theme.ZenGraph.Auth" />
+
+    </application>
+
+
+
+
+
+</manifest>

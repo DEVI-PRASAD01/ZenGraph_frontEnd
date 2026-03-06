@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Ethereal Glass Palette -->
+    <color name="ethereal_bg_start">#E0E7FF</color> <!-- Soft Indigo -->
+    <color name="ethereal_bg_end">#F3E8FF</color>   <!-- Soft Lavender -->
+    
+    <color name="glass_white">#CCFFFFFF</color>     <!-- 80% Alpha White -->
+    <color name="glass_white_less">#99FFFFFF</color> <!-- 60% Alpha White -->
+    <color name="glass_border">#66FFFFFF</color>    <!-- 40% Alpha White -->
+    
+    <color name="text_primary">#1A202C</color>       <!-- Deeper Blue Grey for better contrast -->
+    <color name="text_secondary">#4A5568</color>     <!-- Deeper Muted Grey -->
+    
+    <color name="accent_teal">#319795</color>
+    <color name="accent_violet">#805AD5</color>
+    <color name="accent_coral">#DD6B20</color>
+    
+    <color name="nav_selection_glow">#204FD1C5</color> <!-- 12% Teal glow -->
+    <color name="nav_indicator">#4FD1C5</color>
+
+    <color name="white_pure">#FFFFFF</color>
+    <color name="black_pure">#000000</color>
+
+    <!-- Compatibility Aliases for Legacy Theme -->
+    <color name="bg_dark">@color/ethereal_bg_start</color>
+    <color name="bg_card">@color/glass_white</color>
+    <color name="teal_accent">@color/accent_teal</color>
+    <color name="teal_glow">@color/accent_teal</color>
+    <color name="input_bg">@color/glass_white_less</color>
+    <color name="text_hint">@color/text_secondary</color>
+
+</resources>

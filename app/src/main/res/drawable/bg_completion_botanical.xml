@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:angle="135"
+                android:endColor="#1E3A8A"
+                android:startColor="#0F172A"
+                android:type="linear" />
+        </shape>
+    </item>
+    <!-- Subtle botanical overlay removed for now to ensure a 'neat' look as requested -->
+</layer-list>

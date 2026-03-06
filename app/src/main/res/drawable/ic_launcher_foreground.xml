@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ZenGraph App Icon — Minimal Clean Foreground
+    Simple lotus silhouette in teal with a subtle zen circle
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer zen circle (subtle) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#33319795"
+        android:strokeWidth="1.2"
+        android:pathData="M54,54 m-28,0 a28,28 0 1,0 56,0 a28,28 0 1,0 -56,0" />
+
+    <!-- Lotus petal — center top -->
+    <path
+        android:fillColor="#319795"
+        android:pathData="M54,54 C50,44 50,34 54,26 C58,34 58,44 54,54 Z" />
+
+    <!-- Lotus petal — top right -->
+    <path
+        android:fillColor="#4DB6AC"
+        android:pathData="M54,54 C62,48 70,44 78,42 C74,52 64,56 54,54 Z" />
+
+    <!-- Lotus petal — right -->
+    <path
+        android:fillColor="#319795"
+        android:pathData="M54,54 C64,58 72,58 82,54 C72,64 62,64 54,54 Z" />
+
+    <!-- Lotus petal — bottom right -->
+    <path
+        android:fillColor="#4DB6AC"
+        android:pathData="M54,54 C58,64 60,74 56,82 C48,78 46,66 54,54 Z" />
+
+    <!-- Lotus petal — center bottom -->
+    <path
+        android:fillColor="#319795"
+        android:pathData="M54,54 C58,64 58,74 54,82 C50,74 50,64 54,54 Z" />
+
+    <!-- Lotus petal — bottom left -->
+    <path
+        android:fillColor="#4DB6AC"
+        android:pathData="M54,54 C46,64 40,74 34,78 C34,68 44,58 54,54 Z" />
+
+    <!-- Lotus petal — left -->
+    <path
+        android:fillColor="#319795"
+        android:pathData="M54,54 C44,50 34,50 26,54 C34,44 44,44 54,54 Z" />
+
+    <!-- Lotus petal — top left -->
+    <path
+        android:fillColor="#4DB6AC"
+        android:pathData="M54,54 C46,46 42,36 42,28 C50,32 52,44 54,54 Z" />
+
+    <!-- Center dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,54 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
+
+</vector>

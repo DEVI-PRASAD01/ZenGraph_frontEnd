@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="60dp"
+    android:viewportWidth="120"
+    android:viewportHeight="60">
+    <!-- Outer Oval -->
+    <path
+        android:strokeWidth="1.5"
+        android:strokeColor="#1A202C"
+        android:pathData="M10,30 Q10,10 60,10 Q110,10 110,30 Q110,50 60,50 Q10,50 10,30" />
+    <!-- Inner Oval (slight offset for double-line effect) -->
+    <path
+        android:strokeWidth="1"
+        android:strokeColor="#1A202C"
+        android:pathData="M14,30 Q14,14 60,14 Q106,14 106,30 Q106,46 60,46 Q14,46 14,30" />
+</vector>

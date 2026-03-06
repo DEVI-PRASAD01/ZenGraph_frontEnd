@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Large Logo - starts from top, floats down to center -->
+    <ImageView
+        android:id="@+id/logoView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_zengraph_logo"
+        android:alpha="0"
+        android:translationY="-120dp"
+        app:layout_constraintBottom_toTopOf="@id/nameContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <!-- Letter-by-letter app name -->
+    <LinearLayout
+        android:id="@+id/nameContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/tagline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoView">
+
+        <TextView
+            android:id="@+id/letterZ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z"
+            android:textColor="#319795"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:translationY="30dp" />
+
+        <TextView
+            android:id="@+id/letterE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="e"
+            android:textColor="@color/text_primary"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:translationY="30dp" />
+
+        <TextView
+            android:id="@+id/letterN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="n"
+            android:textColor="@color/text_primary"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:translationY="30dp" />
+
+        <TextView
+            android:id="@+id/letterG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="G"
+            android:textColor="#319795"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:translationY="30dp" />
+
+        <TextView
+            android:id="@+id/letterR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="r"
+            android:textColor="@color/text_primary"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:translationY="30dp" />
+
+        <TextView
+            android:id="@+id/letterA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="a"
+            android:textColor="@color/text_primary"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:translationY="30dp" />
+
+        <TextView
+            android:id="@+id/letterP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="p"
+            android:textColor="@color/text_primary"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:translationY="30dp" />
+
+        <TextView
+            android:id="@+id/letterH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="h"
+            android:textColor="@color/text_primary"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:translationY="30dp" />
+    </LinearLayout>
+
+    <!-- Tagline -->
+    <TextView
+        android:id="@+id/tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="MAP YOUR INNER UNIVERSE"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        android:letterSpacing="0.25"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
