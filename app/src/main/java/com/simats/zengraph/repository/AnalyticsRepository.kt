@@ -12,7 +12,8 @@ class AnalyticsRepository(private val apiService: ApiService) {
     }
 
     suspend fun getWeeklyCompletion(userId: Int): WeeklyCompletionResponse {
-        return apiService.getWeeklyCompletion(userId)
+        val response = apiService.getWeeklyCompletion(userId)
+        return if (response.isSuccessful) response.body()!! else throw Exception("Failed to load weekly completion")
     }
 
     suspend fun getSummary(userId: Int): SummaryResponse {

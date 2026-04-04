@@ -69,15 +69,25 @@ class DashboardViewModel(private val repository: DashboardRepository) : ViewMode
         }
     }
 
-    fun startSession(userId: Int, planId: Int) {
+    fun startSession(userId: Int) {
         viewModelScope.launch {
             _startSessionState.value = ActionState.Loading
             try {
-                val response = repository.startSession(userId, planId)
-                // Save session_id so LiveSessionActivity can find it regardless of navigation path
+                // Use generic defaults for background starts if needed
+                val request = com.simats.zengraph.network.SessionStartRequest(
+                    userId          = userId,
+                    goal            = "Daily Focus",
+                    moodBefore      = "Neutral",
+                    experienceLevel = "Beginner",
+                    sessionName     = "Quick Focus",
+                    duration        = 10,
+                    techniques      = "Mindful Breathing",
+                    matchScore      = 85
+                )
+                val response = repository.startSession(request)
                 com.simats.zengraph.SessionManager.currentSessionId = response.sessionId
                 com.simats.zengraph.SessionManager.sessionDurationMinutes = response.duration
-                _startSessionState.value = ActionState.Success(response.message ?: "Session started!")
+                _startSessionState.value = ActionState.Success(response.status ?: "Success")
             } catch (e: Exception) {
                 _startSessionState.value = ActionState.Error(e.message ?: "Failed to start session")
             }
@@ -92,8 +102,9 @@ class DashboardViewModel(private val repository: DashboardRepository) : ViewMode
         viewModelScope.launch {
             _actionState.value = ActionState.Loading
             try {
-                val response = repository.checkIn(userId, moodScore)
-                _actionState.value = ActionState.Success(response.message ?: "Check-in recorded!")
+                val request = com.simats.zengraph.network.CheckInRequest(userId, moodScore)
+                val response = repository.checkIn(request)
+                _actionState.value = ActionState.Success(response.message ?: "Success")
             } catch (e: Exception) {
                 _actionState.value = ActionState.Error(e.message ?: "Check-in failed")
             }

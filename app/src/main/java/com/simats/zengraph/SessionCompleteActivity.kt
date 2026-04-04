@@ -42,6 +42,12 @@ class SessionCompleteActivity : AppCompatActivity() {
             binding.txtMotivational.text = "Great job showing up today."
         }
 
+        saveToHistory(
+            intent.getLongExtra("EXTRA_START_TIME", System.currentTimeMillis()),
+            intent.getLongExtra("EXTRA_END_TIME", System.currentTimeMillis()),
+            intent.getStringExtra("SESSION_NAME") ?: "Meditation Session"
+        )
+
         // Simple fade-in for motivational text
         val fadeIn = AlphaAnimation(0f, 1f).apply {
             duration = 1000
@@ -64,5 +70,25 @@ class SessionCompleteActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun saveToHistory(startMillis: Long, endMillis: Long, sessionName: String) {
+        val dataManager = DataManager(this)
+        val sdf = java.text.SimpleDateFormat("hh:mm a", java.util.Locale.getDefault())
+        val dateSdf = java.text.SimpleDateFormat("dd MMM yyyy", java.util.Locale.getDefault())
+        
+        val currentTime = System.currentTimeMillis()
+        
+        val historyItem = HistoryItem(
+            startTime = sdf.format(java.util.Date(startMillis)),
+            endTime = sdf.format(java.util.Date(endMillis)),
+            savedTime = dateSdf.format(java.util.Date(currentTime)),
+            goal = dataManager.goal.ifEmpty { "Relaxation" },
+            mood = dataManager.mood.ifEmpty { "Neutral" },
+            level = dataManager.level,
+            suggestedMeditation = sessionName
+        )
+        
+        dataManager.saveHistoryItem(historyItem)
     }
 }

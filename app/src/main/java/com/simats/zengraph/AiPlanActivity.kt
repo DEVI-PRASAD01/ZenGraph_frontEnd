@@ -27,10 +27,20 @@ class AiPlanActivity : AppCompatActivity() {
         val mood = intent.getStringExtra("EXTRA_MOOD") ?: dataManager.mood.ifEmpty { "Neutral" }
         val level = intent.getStringExtra("EXTRA_LEVEL") ?: dataManager.selectedLevel.ifEmpty { "Beginner" }
 
-        // Update Aims based on Goal
+        // Calculate duration from experience level
+        val durationInt = when (level.trim().lowercase()) {
+            "beginner"     -> 5
+            "intermediate" -> 10
+            "advanced"     -> 15
+            else           -> 10
+        }
+        val durationStr = "$durationInt min"
+
+        // Show correct duration immediately
+        binding.txtDuration.text = durationStr
+
         updateAims(goal)
 
-        // Disable Start button until plan is generated
         binding.btnStartPlan.isEnabled = false
         binding.btnStartPlan.alpha = 0.5f
 
@@ -46,7 +56,10 @@ class AiPlanActivity : AppCompatActivity() {
             if (planGenerated) {
                 val intent = Intent(this, SessionReadyActivity::class.java)
                 intent.putExtras(this.intent)
-                intent.putExtra("EXTRA_DURATION", binding.txtDuration.text.toString())
+                intent.putExtra("EXTRA_DURATION", durationStr)
+                intent.putExtra("EXTRA_SESSION_NAME", binding.planName.text.toString())
+                intent.putExtra("EXTRA_LEVEL", level)
+                intent.putExtra("EXTRA_DURATION_INT", durationInt)
                 startActivity(intent)
             }
         }
@@ -55,8 +68,7 @@ class AiPlanActivity : AppCompatActivity() {
             finish()
         }
 
-        // Call API immediately on screen open
-        generatePlan(dataManager, goal, mood, level)
+        generatePlan(dataManager, goal, mood, level, durationStr)
     }
 
     private fun updateAims(goal: String) {
@@ -84,8 +96,14 @@ class AiPlanActivity : AppCompatActivity() {
         }
     }
 
-    private fun generatePlan(dataManager: DataManager, goal: String, mood: String, level: String) {
-        val userId = dataManager.userId
+    private fun generatePlan(
+        dataManager: DataManager,
+        goal: String,
+        mood: String,
+        level: String,
+        durationStr: String
+    ) {
+        val userId = dataManager.currentUserId
         if (userId == -1) {
             Toast.makeText(this, "User session expired. Please login again.", Toast.LENGTH_LONG).show()
             return
@@ -100,20 +118,13 @@ class AiPlanActivity : AppCompatActivity() {
                     GeneratePlanRequest(userId, goal, mood, level)
                 )
 
-                // Save plan data globally
                 dataManager.planId = response.planId
 
-                // Populate UI from API response
                 binding.planName.text = response.title
-                
-                val fixedDuration = intent.getStringExtra("EXTRA_DURATION")
-                if (fixedDuration != null) {
-                    binding.txtDuration.text = fixedDuration
-                } else {
-                    binding.txtDuration.text = "${response.duration} min"
-                }
 
-                // Enable Start button after success
+                // Always use experience-level duration, never backend response.duration
+                binding.txtDuration.text = durationStr
+
                 planGenerated = true
                 binding.btnStartPlan.isEnabled = true
                 binding.btnStartPlan.alpha = 1.0f

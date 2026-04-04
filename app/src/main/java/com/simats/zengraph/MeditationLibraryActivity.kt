@@ -5,14 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.chip.Chip
 import com.simats.zengraph.adapter.LibrarySessionAdapter
 import com.simats.zengraph.databinding.ActivityMeditationLibraryBinding
 import com.simats.zengraph.network.LibrarySession
 import com.simats.zengraph.network.RetrofitClient
-import com.simats.zengraph.network.LibraryGeneratePlanRequest
+import com.simats.zengraph.network.StartLibrarySessionRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,14 +24,13 @@ class MeditationLibraryActivity : AppCompatActivity() {
     private var allSessions: List<LibrarySession> = emptyList()
     private var selectedCategory: String = "All"
 
-    // Fallback sessions if API is down
     private val fallbackSessions = listOf(
-        LibrarySession(1, "Breathe & Release", "Anxiety Relief", 5),
-        LibrarySession(2, "Morning Focus", "Deep Focus", 10),
-        LibrarySession(3, "Deep Relaxation", "Sleep", 20),
-        LibrarySession(4, "Stress Reset", "Anxiety Relief", 8),
-        LibrarySession(5, "Micro Calm", "Quick Calm", 3),
-        LibrarySession(6, "Mindful Walk", "Deep Focus", 15)
+        LibrarySession(1, "Breathe & Release",  "Breathing Meditation",   5,  "Beginner",     "Breath Awareness", "Short breathing exercise to calm the mind"),
+        LibrarySession(2, "Morning Focus",       "Mindfulness Meditation", 10, "Intermediate", "Mind Observation", "Build focus and mental clarity"),
+        LibrarySession(3, "Deep Relaxation",     "Body Scan Meditation",   15, "Advanced",     "Body Scan",        "Release tension from every part of the body"),
+        LibrarySession(4, "Stress Reset",        "Breathing Meditation",   5,  "Beginner",     "Breath Awareness", "Quick reset for stressful moments"),
+        LibrarySession(5, "Peaceful Sleep",      "Sleep Meditation",       15, "Intermediate", "Relaxation",       "Prepare your mind for deep sleep"),
+        LibrarySession(6, "Mindful Awareness",   "Mindfulness Meditation", 10, "Beginner",     "Mind Observation", "Cultivate present moment awareness")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +39,6 @@ class MeditationLibraryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupRecyclerView()
-        setupChips()
-
         fetchSessions()
 
         binding.btnBack.setOnClickListener { finish() }
@@ -56,18 +52,6 @@ class MeditationLibraryActivity : AppCompatActivity() {
         binding.rvSessions.adapter = adapter
     }
 
-    private fun setupChips() {
-        binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            if (checkedIds.isEmpty()) {
-                binding.chipAll.isChecked = true
-                return@setOnCheckedStateChangeListener
-            }
-            val chip = group.findViewById<Chip>(checkedIds.first())
-            selectedCategory = chip?.text?.toString() ?: "All"
-            applyFilters()
-        }
-    }
-
 
 
     private fun applyFilters() {
@@ -76,14 +60,13 @@ class MeditationLibraryActivity : AppCompatActivity() {
         } else {
             allSessions.filter { it.category == selectedCategory }
         }
-
         adapter.updateList(filtered)
         binding.tvEmpty.visibility = if (filtered.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun fetchSessions() {
         binding.progressBar.visibility = View.VISIBLE
-        binding.tvEmpty.visibility = View.GONE
+        binding.tvEmpty.visibility     = View.GONE
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -96,10 +79,13 @@ class MeditationLibraryActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 runOnUiThread {
                     binding.progressBar.visibility = View.GONE
-                    // Use fallback sessions
                     allSessions = fallbackSessions
                     applyFilters()
-                    Toast.makeText(this@MeditationLibraryActivity, "Using offline library", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@MeditationLibraryActivity,
+                        "Using offline library",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -107,42 +93,73 @@ class MeditationLibraryActivity : AppCompatActivity() {
 
     private fun onSessionClicked(session: LibrarySession) {
         val dataManager = DataManager(this)
-        val userId = dataManager.userId.takeIf { it != -1 } ?: 1
+        val userId = dataManager.currentUserId.takeIf { it != -1 } ?: 1
 
-        Toast.makeText(this, "Preparing ${session.title}...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Starting ${session.title}...", Toast.LENGTH_SHORT).show()
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val request = LibraryGeneratePlanRequest(
-                    userId = userId,
-                    title = session.title,
-                    duration = session.duration,
-                    category = session.category
+                val request = StartLibrarySessionRequest(
+                    userId          = userId,
+                    goal            = categoryToGoal(session.category),
+                    moodBefore      = "Neutral",
+                    experienceLevel = session.level,
+                    sessionName     = session.title,
+                    duration        = session.duration,
+                    techniques      = session.technique.ifEmpty { "Mindful Breathing" },
+                    matchScore      = 90
                 )
-                val response = RetrofitClient.apiService.libraryGeneratePlan(request)
-                dataManager.planId = response.planId
+
+                val response = RetrofitClient.apiService.startLibrarySession(request)
+                val sessionId = response.sessionId
+
+                dataManager.sessionId    = sessionId
+                dataManager.goal         = categoryToGoal(session.category)
+                dataManager.lastDuration = session.duration
+
+                SessionManager.currentSessionId       = sessionId
+                SessionManager.sessionDurationMinutes = session.duration
 
                 runOnUiThread {
-                    navigateToFeeling(session.category, response.title, response.duration)
+                    val intent = Intent(
+                        this@MeditationLibraryActivity,
+                        LiveSessionActivity::class.java
+                    ).apply {
+                        putExtra("EXTRA_SESSION_ID",       sessionId)
+                        putExtra("EXTRA_DURATION_MINUTES", session.duration)
+                        putExtra("EXTRA_GOAL",             session.title)
+                        putExtra("EXTRA_SESSION_NAME",     session.title)
+                        putExtra("EXTRA_LEVEL",            session.level)
+                        putExtra("SOURCE",                 "LIBRARY")
+                    }
+                    startActivity(intent)
                 }
+
             } catch (e: Exception) {
                 runOnUiThread {
-                    // Fallback with local data
-                    navigateToFeeling(session.category, session.title, session.duration)
+                    Toast.makeText(
+                        this@MeditationLibraryActivity,
+                        "Failed: ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
     }
 
-    private fun navigateToFeeling(category: String, title: String, duration: Int) {
-        val dataManager = DataManager(this)
-        val intent = Intent(this, FeelingSelectionActivity::class.java)
-        intent.putExtra("EXTRA_GOAL", category)
-        intent.putExtra("EXTRA_USER_ID", dataManager.userId)
-        intent.putExtra("EXTRA_SOURCE", "LIBRARY")
-        intent.putExtra("EXTRA_LIB_TITLE", title)
-        intent.putExtra("EXTRA_LIB_DURATION", duration)
-        intent.putExtra("EXTRA_DURATION", "$duration min")
-        startActivity(intent)
+    private fun categoryToGoal(category: String): String {
+        return when (category.lowercase().trim()) {
+            "breathing meditation"       -> "reduce_stress"
+            "mindfulness meditation"     -> "build_mindfulness"
+            "body scan meditation"       -> "increase_calm"
+            "gratitude meditation"       -> "feel_happier"
+            "loving-kindness meditation" -> "feel_happier"
+            "sleep meditation"           -> "sleep_better"
+            "anxiety relief", "stress"   -> "reduce_stress"
+            "deep focus", "focus"        -> "improve_focus"
+            "sleep", "better sleep"      -> "sleep_better"
+            "calm", "quick calm"         -> "increase_calm"
+            else                         -> "increase_calm"
+        }
     }
 }

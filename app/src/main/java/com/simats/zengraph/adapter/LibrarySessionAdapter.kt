@@ -11,23 +11,28 @@ class LibrarySessionAdapter(
     private val onClick: (LibrarySession) -> Unit
 ) : RecyclerView.Adapter<LibrarySessionAdapter.ViewHolder>() {
 
-    // Category → teal-family color mapping
     private val categoryColors = mapOf(
-        "Anxiety Relief" to 0xFF319795.toInt(),
-        "Deep Focus" to 0xFF805AD5.toInt(),
-        "Quick Calm" to 0xFF4FD1C5.toInt(),
-        "Sleep" to 0xFF6B46C1.toInt()
+        "Breathing Meditation"       to 0xFF319795.toInt(),
+        "Mindfulness Meditation"     to 0xFF805AD5.toInt(),
+        "Body Scan Meditation"       to 0xFF4FD1C5.toInt(),
+        "Gratitude Meditation"       to 0xFFD69E2E.toInt(),
+        "Loving-kindness Meditation" to 0xFFE53E8C.toInt(),
+        "Sleep Meditation"           to 0xFF6B46C1.toInt(),
+        // Legacy fallbacks
+        "Anxiety Relief"             to 0xFF319795.toInt(),
+        "Deep Focus"                 to 0xFF805AD5.toInt(),
+        "Quick Calm"                 to 0xFF4FD1C5.toInt(),
+        "Sleep"                      to 0xFF6B46C1.toInt()
     )
 
     inner class ViewHolder(val binding: ItemLibrarySessionBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(session: LibrarySession) {
-            binding.tvTitle.text = session.title
+            binding.tvTitle.text    = session.title
             binding.tvCategory.text = session.category
             binding.tvDuration.text = "${session.duration} min"
 
-            // Tint the category badge
             val color = categoryColors[session.category] ?: 0xFF319795.toInt()
             binding.tvCategory.background.setTint(color)
 

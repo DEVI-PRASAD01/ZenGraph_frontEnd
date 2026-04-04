@@ -154,37 +154,7 @@
                         app:tint="@color/text_secondary" />
                 </LinearLayout>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#10000000" android:layout_marginHorizontal="24dp" />
 
-                <!-- Subscription -->
-                <LinearLayout
-                    android:id="@+id/itemSubscription"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="24dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_star"
-                        app:tint="@color/accent_teal" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="1"
-                        android:text="Subscription"
-                        android:textColor="@color/text_primary"
-                        android:textSize="17sp" />
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_back"
-                        android:rotation="180"
-                        app:tint="@color/text_secondary" />
-                </LinearLayout>
             </LinearLayout>
 
             <!-- Preferences Section -->
@@ -205,37 +175,6 @@
                 android:background="@drawable/bg_glass_card"
                 android:backgroundTint="@color/glass_white_less"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/itemPrivacy"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="24dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_mic"
-                        app:tint="@color/accent_teal" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="1"
-                        android:text="Privacy &amp; Data"
-                        android:textColor="@color/text_primary"
-                        android:textSize="17sp" />
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_back"
-                        android:rotation="180"
-                        app:tint="@color/text_secondary" />
-                </LinearLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#10000000" android:layout_marginHorizontal="24dp" />
 
                 <LinearLayout
                     android:id="@+id/itemNotifications"
@@ -263,79 +202,8 @@
                         android:layout_height="wrap_content"
                         android:checked="true" />
                 </LinearLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#10000000" android:layout_marginHorizontal="24dp" />
-
-                <LinearLayout
-                    android:id="@+id/itemDataSharing"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="24dp">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_mic"
-                        app:tint="@color/accent_teal" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="1"
-                        android:text="Data Sharing"
-                        android:textColor="@color/text_primary"
-                        android:textSize="17sp" />
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switchDataSharing"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false" />
-                </LinearLayout>
             </LinearLayout>
 
-            <!-- Support Section -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="SUPPORT"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp"
-                android:letterSpacing="0.1"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:id="@+id/itemFAQ"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_glass_card"
-                android:backgroundTint="@color/glass_white_less"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="20dp"
-                android:clickable="true"
-                android:focusable="true">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_back"
-                    android:rotation="270"
-                    app:tint="@color/accent_teal" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="FAQ &amp; Help"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_back"
-                    android:rotation="180"
-                    app:tint="@color/text_secondary" />
-            </LinearLayout>
 
             <!-- Logout Item -->
             <LinearLayout
@@ -484,31 +352,7 @@
                     android:visibility="invisible" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/navCoach"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_mic"
-                    app:tint="@color/text_secondary" />
-
-                <View
-                    android:id="@+id/indicatorCoach"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@drawable/nav_indicator"
-                    android:visibility="invisible" />
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/navSettings"

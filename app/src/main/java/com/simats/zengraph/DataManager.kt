@@ -3,8 +3,19 @@ package com.simats.zengraph
 import android.content.Context
 import android.content.SharedPreferences
 
+data class HistoryItem(
+    val startTime: String,
+    val endTime: String,
+    val savedTime: String,
+    val goal: String,
+    val mood: String,
+    val level: String,
+    val suggestedMeditation: String
+)
+
 class DataManager(context: Context) {
-    private val prefs: SharedPreferences = context.getSharedPreferences("ZenGraphPrefs", Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences = context.getSharedPreferences("ZenGraph", Context.MODE_PRIVATE)
+    private val gson = com.google.gson.Gson()
 
     companion object {
         private const val KEY_STREAK = "streak"
@@ -21,6 +32,25 @@ class DataManager(context: Context) {
         private const val KEY_SELECTED_LEVEL = "selected_level"
         private const val KEY_PREDICTED_EMOTION = "predicted_emotion"
         private const val KEY_LAST_DURATION = "last_duration"
+        private const val KEY_SESSION_NAME = "session_name"
+        private const val KEY_HISTORY = "meditation_history"
+    }
+
+    var history: List<HistoryItem>
+        get() {
+            val json = prefs.getString(KEY_HISTORY, null) ?: return emptyList()
+            val type = object : com.google.gson.reflect.TypeToken<List<HistoryItem>>() {}.type
+            return gson.fromJson(json, type)
+        }
+        set(value) {
+            val json = gson.toJson(value)
+            prefs.edit().putString(KEY_HISTORY, json).apply()
+        }
+
+    fun saveHistoryItem(item: HistoryItem) {
+        val currentHistory = history.toMutableList()
+        currentHistory.add(0, item) // Add to the beginning (latest first)
+        history = currentHistory
     }
 
     var streak: Int
@@ -47,9 +77,11 @@ class DataManager(context: Context) {
         get() = prefs.getString("chat_history", "[]") ?: "[]"
         set(value) = prefs.edit().putString("chat_history", value).apply()
 
-    var userId: Int
+    var currentUserId: Int
         get() = prefs.getInt(KEY_USER_ID, -1)
         set(value) = prefs.edit().putInt(KEY_USER_ID, value).apply()
+
+    fun getUserId(): Int = currentUserId
 
     var planId: Int
         get() = prefs.getInt(KEY_PLAN_ID, -1)
@@ -82,6 +114,10 @@ class DataManager(context: Context) {
     var lastDuration: Int
         get() = prefs.getInt(KEY_LAST_DURATION, 0)
         set(value) = prefs.edit().putInt(KEY_LAST_DURATION, value).apply()
+
+    var sessionName: String
+        get() = prefs.getString(KEY_SESSION_NAME, "") ?: ""
+        set(value) = prefs.edit().putString(KEY_SESSION_NAME, value).apply()
 
     fun clearSession() {
         prefs.edit().apply {

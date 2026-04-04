@@ -7,12 +7,13 @@ class SessionRepository(private val apiService: ApiService) {
         return apiService.startSession(request)
     }
 
-    suspend fun completeSession(request: SessionCompleteRequest): SessionCompleteResponse {
-        return apiService.completeSession(request)
+    suspend fun completeSession(sessionId: Int, request: SessionCompleteRequest): SessionCompleteResponse {
+        return apiService.completeSession(sessionId, request)
     }
 
     suspend fun getSessionStats(userId: Int): SessionStatsResponse {
-        return apiService.getSessionStats(userId)
+        val response = apiService.getSessionStats(userId)
+        return if (response.isSuccessful) response.body()!! else throw Exception("Failed to load session stats")
     }
 
     suspend fun analyzeSession(request: AIAnalysisRequest): AIAnalysisResponse {

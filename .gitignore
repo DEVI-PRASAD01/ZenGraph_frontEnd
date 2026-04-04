@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Ignore build outputs (VERY IMPORTANT)
+*.aab
+*.apk
+/app/release/

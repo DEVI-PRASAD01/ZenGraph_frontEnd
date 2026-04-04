@@ -26,12 +26,8 @@ class LoginViewModel(private val repository: AuthRepository) : ViewModel() {
             _loginState.value = LoginState.Loading
             try {
                 val response = repository.login(request)
-                if (response.status == "success") {
-                    _loginState.value = LoginState.Success(response)
-                } else {
-                    val errorMsg = response.message ?: response.detail ?: "Login failed"
-                    _loginState.value = LoginState.Error(errorMsg)
-                }
+                // Success if we reached here as repo throws on failure
+                _loginState.value = LoginState.Success(response)
             } catch (e: Exception) {
                 _loginState.value = LoginState.Error(e.localizedMessage ?: "An error occurred")
             }

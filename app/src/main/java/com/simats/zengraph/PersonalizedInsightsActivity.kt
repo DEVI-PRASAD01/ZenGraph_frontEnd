@@ -2,13 +2,11 @@ package com.simats.zengraph
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.simats.zengraph.databinding.ActivityPersonalizedInsightsBinding
 import com.simats.zengraph.network.EmotionPredictionRequest
@@ -35,11 +33,20 @@ class PersonalizedInsightsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val dataManager = DataManager(this)
-        val userId = dataManager.userId
+        val userId = dataManager.currentUserId
 
-        // Retrieve data passed from previous steps (Goal, Mood)
         val goal = intent.getStringExtra("EXTRA_GOAL") ?: dataManager.goal.ifEmpty { "Anxiety Relief" }
         val mood = intent.getStringExtra("EXTRA_MOOD") ?: dataManager.mood.ifEmpty { "Neutral" }
+        val level = intent.getStringExtra("EXTRA_LEVEL") ?: dataManager.selectedLevel.ifEmpty { "Beginner" }
+
+        // Calculate and show correct duration based on experience level
+        val durationInt = when (level.trim().lowercase()) {
+            "beginner"     -> 5
+            "intermediate" -> 10
+            "advanced"     -> 15
+            else           -> 10
+        }
+        binding.txtDuration.text = "$durationInt min"
 
         updatePersonalization(goal, mood)
         observeProfilePhoto()
@@ -58,7 +65,7 @@ class PersonalizedInsightsActivity : AppCompatActivity() {
 
         binding.btnStartPlan.setOnClickListener {
             if (!isProcessing) {
-                callPredictEmotion(dataManager, mood)
+                callPredictEmotion(dataManager, mood, level, durationInt)
             }
         }
     }
@@ -80,8 +87,13 @@ class PersonalizedInsightsActivity : AppCompatActivity() {
         }
     }
 
-    private fun callPredictEmotion(dataManager: DataManager, mood: String) {
-        val userId = dataManager.userId
+    private fun callPredictEmotion(
+        dataManager: DataManager,
+        mood: String,
+        level: String,
+        durationInt: Int
+    ) {
+        val userId = dataManager.currentUserId
         if (userId == -1) {
             Toast.makeText(this, "User session expired. Please login again.", Toast.LENGTH_LONG).show()
             return
@@ -98,14 +110,16 @@ class PersonalizedInsightsActivity : AppCompatActivity() {
                     EmotionPredictionRequest(userId, mood, thought)
                 )
 
-                // Save prediction result to DataManager
                 dataManager.predictedEmotion = response.predictedEmotion
+                dataManager.lastDuration = durationInt
 
-                // Navigate to AI Plan screen on success
                 val intent = Intent(this@PersonalizedInsightsActivity, AiPlanActivity::class.java)
                 intent.putExtras(this@PersonalizedInsightsActivity.intent)
                 intent.putExtra("EXTRA_PREDICTED_EMOTION", response.predictedEmotion)
                 intent.putExtra("EXTRA_CONFIDENCE", response.confidence)
+                intent.putExtra("EXTRA_LEVEL", level)
+                intent.putExtra("EXTRA_DURATION", "$durationInt min")
+                intent.putExtra("EXTRA_DURATION_INT", durationInt)
                 startActivity(intent)
                 finish()
             } catch (e: Exception) {
@@ -122,24 +136,23 @@ class PersonalizedInsightsActivity : AppCompatActivity() {
     }
 
     private fun updatePersonalization(goal: String, mood: String) {
-        // Dynamic message based on mood in the new insight box
         val message = when (mood) {
             "Anxious", "Stressed" -> "Helps reduce stress & improves calm"
-            "Tired", "Low" -> "Revitalizes your energy & focus"
-            "Neutral", "Normal" -> "Maintains stability & clarity"
-            "Happy", "Great", "Excited" -> "Amplifies your positive state"
-            else -> "Perfectly balanced for your state"
+            "Tired", "Low"        -> "Revitalizes your energy & focus"
+            "Neutral", "Normal"   -> "Maintains stability & clarity"
+            "Happy", "Great",
+            "Excited"             -> "Amplifies your positive state"
+            else                  -> "Perfectly balanced for your state"
         }
         binding.txtAdaptiveMessage.text = message
 
-        // Dynamic session name based on goal
         val sessionName = when (goal) {
-            "Anxiety Relief" -> "Oceanic\nCalm"
-            "Better Sleep" -> "Midnight\nDrift"
+            "Anxiety Relief"       -> "Oceanic\nCalm"
+            "Better Sleep"         -> "Midnight\nDrift"
             "Focus & Productivity" -> "Peak\nClarity"
-            "Build Self-Esteem" -> "Soul\nStrength"
-            else -> "Zen\nHarmony"
+            "Build Self-Esteem"    -> "Soul\nStrength"
+            else                   -> "Zen\nHarmony"
         }
         binding.txtSessionName.text = sessionName
     }
-}
+}

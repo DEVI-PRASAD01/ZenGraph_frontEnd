@@ -34,65 +34,7 @@
 
 
 
-    <!-- Filter Chips -->
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_marginBottom="16dp">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipAll"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All"
-                android:checked="true"
-                android:textColor="@color/white"
-                app:chipBackgroundColor="@color/accent_teal"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipAnxiety"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Anxiety Relief"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFocus"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Deep Focus"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipCalm"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Quick Calm"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSleep"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sleep"
-                app:chipCornerRadius="20dp" />
-
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
 
     <!-- Loading -->
     <ProgressBar

@@ -48,7 +48,7 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sharedPrefs = getSharedPreferences("ZenGraphPrefs", Context.MODE_PRIVATE)
+        val sharedPrefs = getSharedPreferences("ZenGraph", Context.MODE_PRIVATE)
         val userId = sharedPrefs.getInt("user_id", -1)
         currentUserId = userId
 
@@ -133,22 +133,16 @@ class SettingsActivity : AppCompatActivity() {
             binding.tvProfileAvatar.text = data.name.firstOrNull()?.uppercase() ?: "U"
         }
 
-        // Seed toggles from API response (enable_notifications / data_sharing_consent)
+        // Seed toggles from API response (enable_notifications)
         preferencesLoaded = false
         binding.switchNotifications.setOnCheckedChangeListener(null)
-        binding.switchDataSharing.setOnCheckedChangeListener(null)
         binding.switchNotifications.isChecked = data.enableNotifications
-        binding.switchDataSharing.isChecked = data.dataSharingConsent
 
         // Wire toggle listeners — only fire after initial values are set
         binding.switchNotifications.setOnCheckedChangeListener { _, isChecked ->
             if (preferencesLoaded) {
-                settingsViewModel.updatePreferences(userId, isChecked, binding.switchDataSharing.isChecked)
-            }
-        }
-        binding.switchDataSharing.setOnCheckedChangeListener { _, isChecked ->
-            if (preferencesLoaded) {
-                settingsViewModel.updatePreferences(userId, binding.switchNotifications.isChecked, isChecked)
+                // Keep data sharing as is from the data object or default to false
+                settingsViewModel.updatePreferences(userId, isChecked, data.dataSharingConsent)
             }
         }
         preferencesLoaded = true
@@ -173,8 +167,7 @@ class SettingsActivity : AppCompatActivity() {
         AnimationUtils.apply3DEntrance(binding.settingsTitle)
         AnimationUtils.apply3DEntrance(binding.profileCard, 100)
         AnimationUtils.apply3DEntrance(binding.itemProfile.parent as android.view.View, 200)
-        AnimationUtils.apply3DEntrance(binding.itemPrivacy.parent as android.view.View, 300)
-        AnimationUtils.apply3DEntrance(binding.itemFAQ, 400)
+        AnimationUtils.apply3DEntrance(binding.itemNotifications.parent as android.view.View, 300)
         AnimationUtils.apply3DEntrance(binding.bottomNavContainer, 500)
         AnimationUtils.startFloatingAnimation(binding.profileCard)
     }
@@ -201,10 +194,7 @@ class SettingsActivity : AppCompatActivity() {
             startAnimatedActivity(Intent(this, AnalyticsDashboardActivity::class.java))
         }
 
-        binding.navCoach.setOnClickListener {
-            AnimationUtils.applyScalePop(it)
-            startAnimatedActivity(Intent(this, AiCoachChatActivity::class.java))
-        }
+
 
         binding.profileCard.setOnClickListener {
             AnimationUtils.apply3DRotation(it, 10f)
@@ -221,24 +211,11 @@ class SettingsActivity : AppCompatActivity() {
             startAnimatedActivity(Intent(this, EditProfileActivity::class.java))
         }
 
-        binding.itemSubscription.setOnClickListener {
-            AnimationUtils.applyScalePop(it)
-            startAnimatedActivity(Intent(this, SubscriptionActivity::class.java))
-        }
 
-        binding.itemPrivacy.setOnClickListener {
-            AnimationUtils.applyScalePop(it)
-            startAnimatedActivity(Intent(this, PrivacyDataActivity::class.java))
-        }
 
         binding.itemNotifications.setOnClickListener {
             AnimationUtils.applyScalePop(it)
             // Toggle is handled by the switch listener set in bindProfile
-        }
-
-        binding.itemFAQ.setOnClickListener {
-            AnimationUtils.applyScalePop(it)
-            startAnimatedActivity(Intent(this, FaqActivity::class.java))
         }
 
         binding.logoutLayout.setOnClickListener {

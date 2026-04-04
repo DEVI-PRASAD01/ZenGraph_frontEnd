@@ -87,218 +87,207 @@
                 android:textStyle="bold" />
 
 
-            <!-- ===== MOOD HISTORY CARD ===== -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/moodHistoryCard"
+
+            
+            <!-- ===== CHECK IN SECTION ===== -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp">
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_glass_card"
-                    android:orientation="vertical"
-                    android:padding="18dp">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <!-- Row: title + "..." -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:layout_weight="1"
+                        android:text="Check In"
+                        android:textColor="@color/text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Mood History"
-                            android:textColor="@color/text_primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvMoodHistoryDots"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="···"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="18sp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:padding="8dp"/>
-                    </LinearLayout>
-
-                    <!-- Mood emoji cards row -->
-                    <LinearLayout
-                        android:id="@+id/moodHistoryRow"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <!-- Mon – angry -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <LinearLayout
-                                android:layout_width="52dp"
-                                android:layout_height="52dp"
-                                android:background="@drawable/bg_glass_card"
-                                android:backgroundTint="#FFCCBC"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:src="@drawable/ic_mood_very_sad"
-                                    app:tint="@color/accent_coral" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="Mon"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <!-- Tue – calm -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <LinearLayout
-                                android:layout_width="52dp"
-                                android:layout_height="52dp"
-                                android:background="@drawable/bg_glass_card"
-                                android:backgroundTint="#E8EAF6"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:src="@drawable/ic_mood_neutral"
-                                    app:tint="@color/accent_violet" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="Tue"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <!-- Wed – stressed -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <LinearLayout
-                                android:layout_width="52dp"
-                                android:layout_height="52dp"
-                                android:background="@drawable/bg_glass_card"
-                                android:backgroundTint="#D1D5FA"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:src="@drawable/ic_mood_sad"
-                                    app:tint="@color/accent_violet" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="Wed"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <!-- Thu – tired -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <LinearLayout
-                                android:layout_width="52dp"
-                                android:layout_height="52dp"
-                                android:background="@drawable/bg_glass_card"
-                                android:backgroundTint="#E8F5E9"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:src="@drawable/ic_mood_neutral"
-                                    app:tint="@color/accent_teal" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="Thu"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <!-- Fri – happy -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <LinearLayout
-                                android:layout_width="52dp"
-                                android:layout_height="52dp"
-                                android:background="@drawable/bg_glass_card"
-                                android:backgroundTint="#DCEDC8"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:src="@drawable/ic_mood_happy"
-                                    app:tint="#558B2F" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="Fri"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:text="···"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:clickable="true"
+                        android:focusable="true"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:scrollbars="none"
+                    android:clipToPadding="false"
+                    android:paddingEnd="20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Happy -->
+                        <LinearLayout
+                            android:id="@+id/llMoodHappy"
+                            android:layout_width="85dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_mood_selector"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="😊"
+                                android:textSize="32sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Happy"
+                                android:textColor="#5A6076"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <!-- Sad -->
+                        <LinearLayout
+                            android:id="@+id/llMoodSad"
+                            android:layout_width="85dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_mood_selector"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="😢"
+                                android:textSize="32sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Sad"
+                                android:textColor="#5A6076"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <!-- Angry -->
+                        <LinearLayout
+                            android:id="@+id/llMoodAngry"
+                            android:layout_width="85dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_mood_selector"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="😠"
+                                android:textSize="32sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Angry"
+                                android:textColor="#5A6076"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <!-- Anxious -->
+                        <LinearLayout
+                            android:id="@+id/llMoodAnxious"
+                            android:layout_width="85dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_mood_selector"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="😰"
+                                android:textSize="32sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Anxious"
+                                android:textColor="#5A6076"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <!-- Neutral -->
+                        <LinearLayout
+                            android:id="@+id/llMoodNeutral"
+                            android:layout_width="85dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_mood_selector"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="😐"
+                                android:textSize="32sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Neutral"
+                                android:textColor="#5A6076"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <!-- Excited -->
+                        <LinearLayout
+                            android:id="@+id/llMoodExcited"
+                            android:layout_width="85dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_mood_selector"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🤩"
+                                android:textSize="32sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Excited"
+                                android:textColor="#5A6076"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+            
 
             <!-- ===== ACTIONS SECTION ===== -->
             <LinearLayout
@@ -317,11 +306,6 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_chevron_right"
-                    app:tint="@color/accent_teal" />
             </LinearLayout>
 
             <!-- Action Cards Row -->
@@ -365,15 +349,14 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-
-                    <!-- AI Coach Card -->
+                    <!-- History Card -->
                     <LinearLayout
-                        android:id="@+id/aiCoachCard"
+                        android:id="@+id/historyCard"
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:layout_marginStart="12dp"
                         android:background="@drawable/bg_glass_card"
-                        android:backgroundTint="#CCE0E7FF"
+                        android:backgroundTint="#CCF3E8FF"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="12dp"
@@ -383,18 +366,49 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_brain"
+                            android:src="@drawable/ic_history"
                             app:tint="@color/accent_violet" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="AI Coach"
+                            android:text="History"
                             android:textColor="@color/text_primary"
                             android:textSize="13sp"
                             android:textStyle="bold" />
                     </LinearLayout>
+
+                    <!-- Friends Card -->
+                    <LinearLayout
+                        android:id="@+id/friendsCard"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:backgroundTint="#CCFFEBEE"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_group"
+                            app:tint="#F44336" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Friends"
+                            android:textColor="@color/text_primary"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -416,11 +430,6 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_edit"
-                    app:tint="@color/text_secondary" />
             </LinearLayout>
 
             <!-- Suggestion Card 1 -->
@@ -754,11 +763,11 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_home"
-                    app:tint="@color/accent_teal" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏠"
+                    android:textSize="24sp" />
 
                 <View
                     android:id="@+id/indicatorHome"
@@ -781,14 +790,41 @@
                 android:focusable="true"
                 android:background="?attr/selectableItemBackgroundBorderless">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_star"
-                    app:tint="@color/text_secondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐"
+                    android:textSize="24sp" />
 
                 <View
                     android:id="@+id/indicatorLibrary"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/nav_indicator"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <!-- Reminder -->
+            <LinearLayout
+                android:id="@+id/navReminder"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⏰"
+                    android:textSize="24sp" />
+
+                <View
+                    android:id="@+id/indicatorReminder"
                     android:layout_width="4dp"
                     android:layout_height="4dp"
                     android:layout_marginTop="6dp"
@@ -808,11 +844,11 @@
                 android:focusable="true"
                 android:background="?attr/selectableItemBackgroundBorderless">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_visibility"
-                    app:tint="@color/text_secondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="👁️"
+                    android:textSize="24sp" />
 
                 <View
                     android:id="@+id/indicatorProgress"
@@ -823,32 +859,7 @@
                     android:visibility="invisible" />
             </LinearLayout>
 
-            <!-- Coach -->
-            <LinearLayout
-                android:id="@+id/navCoach"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_mic"
-                    app:tint="@color/text_secondary" />
-
-                <View
-                    android:id="@+id/indicatorCoach"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@drawable/nav_indicator"
-                    android:visibility="invisible" />
-            </LinearLayout>
 
             <!-- Settings -->
             <LinearLayout
@@ -862,11 +873,11 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_profile"
-                    app:tint="@color/text_secondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="👤"
+                    android:textSize="24sp" />
 
                 <View
                     android:id="@+id/indicatorSettings"

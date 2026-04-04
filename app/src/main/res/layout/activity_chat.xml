@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EEF0F8">
+
+    <!-- HEADER -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_arrow_back"
+                android:padding="4dp"
+                app:tint="#1A1A2E"
+                android:layout_marginEnd="8dp"/>
+
+            <FrameLayout
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="10dp">
+
+                <View
+                    android:id="@+id/viewFriendCircle"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/circle_teal_bg"/>
+
+                <TextView
+                    android:id="@+id/tvFriendInitials"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvFriendName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A2E"/>
+
+                <TextView
+                    android:id="@+id/tvFriendStreak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:textColor="#1D9E75"/>
+            </LinearLayout>
+
+            <!-- Session Invite Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInviteSession"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Invite to session"
+                android:textSize="11sp"
+                android:textColor="#0F6E56"
+                app:backgroundTint="#E1F5EE"
+                app:cornerRadius="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- MESSAGES LIST -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMessages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false"/>
+
+    <!-- QUICK ACTION BUTTONS -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="6dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQuick1"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Meditate now!"
+                android:textSize="11sp"
+                android:textColor="#0F6E56"
+                app:backgroundTint="#E1F5EE"
+                app:cornerRadius="16dp"
+                android:layout_marginEnd="6dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQuick2"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Great streak!"
+                android:textSize="11sp"
+                android:textColor="#854F0B"
+                app:backgroundTint="#FFF3E0"
+                app:cornerRadius="16dp"
+                android:layout_marginEnd="6dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQuick3"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Join me?"
+                android:textSize="11sp"
+                android:textColor="#3C3489"
+                app:backgroundTint="#F3F0FD"
+                app:cornerRadius="16dp"
+                android:layout_marginEnd="6dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQuick4"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Keep going!"
+                android:textSize="11sp"
+                android:textColor="#712B13"
+                app:backgroundTint="#FAECE7"
+                app:cornerRadius="16dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- MESSAGE INPUT -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="4dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <EditText
+                android:id="@+id/etMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type a message..."
+                android:textSize="13sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:background="@null"
+                android:maxLines="4"
+                android:inputType="textMultiLine"/>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Send button -->
+        <FrameLayout
+            android:id="@+id/btnSend"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:background="@drawable/circle_teal_bg"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_send"
+                app:tint="#FFFFFF"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -12,6 +12,9 @@ import com.simats.zengraph.viewmodel.AnalyticsViewModel
 import com.simats.zengraph.viewmodel.AnalyticsViewModelFactory
 import android.widget.Toast
 import android.view.animation.OvershootInterpolator
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import com.simats.zengraph.network.*
 
 class AnalyticsDashboardActivity : AppCompatActivity() {
 
@@ -27,7 +30,7 @@ class AnalyticsDashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val dataManager = DataManager(this)
-        userId = dataManager.userId
+        userId = dataManager.currentUserId
 
         if (userId == -1) {
             Toast.makeText(this, "Session expired", Toast.LENGTH_SHORT).show()
@@ -36,36 +39,50 @@ class AnalyticsDashboardActivity : AppCompatActivity() {
         }
 
         setupTabs()
-        setupObservers()
+        // setupObservers() // Using direct loadAnalytics now
 
-        // Fetch real data for "Day" tab by default
-        viewModel.loadAnalytics(userId, "day")
+        // Fetch initial data
+        loadAnalytics("day")
 
-        binding.btnDetailedInsights.setOnClickListener {
-            startActivity(Intent(this, PersonalizedInsightsActivity::class.java))
-        }
 
         binding.btnBack.setOnClickListener {
             finish()
         }
     }
 
-    private fun setupObservers() {
-        viewModel.progressState.observe(this) { state ->
-            when (state) {
-                is AnalyticsState.Loading -> {
-                    // Could show a shimmer or spinner here
-                }
-                is AnalyticsState.Success -> {
-                    val data = state.data
+    private fun loadAnalytics(period: String = "week") {
+        lifecycleScope.launch {
+            try {
+                val apiService = RetrofitClient.apiService
+
+                // Main progress data
+                val progressResponse = apiService.getProgressAnalytics(userId, period)
+                if (progressResponse.isSuccessful && progressResponse.body() != null) {
+                    val data = progressResponse.body()!!
                     binding.calmProgress.progress = data.calmScore
                     binding.tvCalmScore.text = data.calmScore.toString()
                     binding.tvMindfulMins.text = data.mindfulMinutes.toString()
                     binding.tvStressReduced.text = "${data.stressReduced}%"
                 }
-                is AnalyticsState.Error -> {
-                    Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
+
+                // Summary totals
+                val summaryResponse = apiService.getAnalyticsSummary(userId)
+                if (summaryResponse.isSuccessful && summaryResponse.body()?.status == "success") {
+                    val summary = summaryResponse.body()!!
+                    // Update summary views if they exist in binding
+                    // binding.tvTotalSessions?.text = summary.totalSessions.toString()
                 }
+
+                // Weekly completion
+                val weeklyResponse = apiService.getWeeklyCompletion(userId)
+                if (weeklyResponse.isSuccessful && weeklyResponse.body()?.status == "success") {
+                    val weekly = weeklyResponse.body()!!
+                    // binding.tvWeeklyCount?.text = weekly.completedThisWeek.toString()
+                }
+
+            } catch (e: Exception) {
+                Toast.makeText(this@AnalyticsDashboardActivity,
+                    "Could not load analytics", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -106,7 +123,7 @@ class AnalyticsDashboardActivity : AppCompatActivity() {
                     binding.tabMonth.id -> "month"
                     else -> "day"
                 }
-                viewModel.loadProgress(userId, period)
+                loadAnalytics(period)
             }
         }
     }

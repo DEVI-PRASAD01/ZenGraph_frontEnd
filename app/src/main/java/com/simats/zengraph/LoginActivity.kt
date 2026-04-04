@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                     // Success is partially handled, but we need to fetch dashboard
                     val userId = state.response.userId
                     if (userId != null) {
-                        val sharedPrefs = getSharedPreferences("ZenGraphPrefs", Context.MODE_PRIVATE)
+                        val sharedPrefs = getSharedPreferences("ZenGraph", Context.MODE_PRIVATE)
                         sharedPrefs.edit().putInt("user_id", userId).apply()
                         state.response.name?.let {
                             sharedPrefs.edit().putString("user_name", it).apply()

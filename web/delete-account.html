@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Your Account - ZenGraph</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ethereal-bg-start: #E0E7FF;
+            --ethereal-bg-end: #F3E8FF;
+            --accent-teal: #319795;
+            --accent-red: #FF5252;
+            --text-primary: #1A202C;
+            --text-secondary: #4A5568;
+            --glass-white: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--ethereal-bg-start), var(--ethereal-bg-end));
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-teal);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        p.subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .content-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .warning-box {
+            background: rgba(255, 82, 82, 0.05);
+            border: 1px solid rgba(255, 82, 82, 0.15);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .warning-box h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .warning-box p {
+            font-size: 0.9rem;
+            color: #721c24;
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        input[type="email"], textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        input[type="email"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(49, 151, 149, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            accent-color: var(--accent-red);
+            margin-top: 3px;
+        }
+
+        .checkbox-group span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            user-select: none;
+        }
+
+        .btn-delete {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(255, 82, 82, 0.2);
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 82, 82, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .btn-delete:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: var(--accent-teal);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .content-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">ZenGraph</div>
+            <h1>Delete Your Account</h1>
+            <p class="subtitle">We're sorry to see you go.</p>
+        </header>
+
+        <main class="content-card">
+            <div class="warning-box">
+                <h2>Important Warning</h2>
+                <p>Deleting your account is permanent and cannot be undone. You will lose all your meditation history, mood analysis, AI-generated reports, and wellness data.</p>
+            </div>
+
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="email">Account Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="e.g. name@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason">Reason for leaving (Optional)</label>
+                    <textarea id="reason" name="reason" rows="3" placeholder="Tell us how we can improve..."></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="confirm" name="confirm" required>
+                    <label for="confirm" style="margin: 0; font-weight: 400; font-size: 0.85rem;">
+                        I understand that my account data will be permanently deleted and cannot be recovered.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-delete">Request Account Deletion</button>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <a href="privacy-policy.html">Back to Privacy Policy</a>
+        </footer >
+    </div>
+
+</body>
+</html>

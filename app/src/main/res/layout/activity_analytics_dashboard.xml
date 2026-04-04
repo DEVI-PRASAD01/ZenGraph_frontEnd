@@ -234,15 +234,6 @@
                 app:tint="@color/accent_teal" />
         </LinearLayout>
 
-        <android.widget.Button
-            android:id="@+id/btnDetailedInsights"
-            style="@style/EtherealButton"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="32dp"
-            android:text="View Detailed Insights"
-            app:layout_constraintTop_toBottomOf="@id/radarCard" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

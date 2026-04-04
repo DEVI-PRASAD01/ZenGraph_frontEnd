@@ -54,7 +54,7 @@ class EditProfileActivity : AppCompatActivity() {
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val prefs = getSharedPreferences("ZenGraphPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("ZenGraph", Context.MODE_PRIVATE)
         userId = prefs.getInt("user_id", -1)
 
         observeProfile()

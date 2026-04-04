@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "245427491205",
+    "project_id": "zengraph-7e5c5",
+    "storage_bucket": "zengraph-7e5c5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245427491205:android:1f512931bb2ae705cfb4ec",
+        "android_client_info": {
+          "package_name": "com.simats.zengraph"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-9ZS-qzQ2hVZFtr3WSjDQYgLUBzD8pUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

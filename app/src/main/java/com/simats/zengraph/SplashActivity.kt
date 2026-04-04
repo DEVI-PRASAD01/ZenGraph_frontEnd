@@ -60,7 +60,16 @@ class SplashActivity : AppCompatActivity() {
 
         // --- Navigate after animation completes ---
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, AuthChoiceActivity::class.java))
+            val sharedPrefs = getSharedPreferences("ZenGraph", android.content.Context.MODE_PRIVATE)
+            val userId = sharedPrefs.getInt("user_id", -1)
+            
+            val intent = if (userId != -1) {
+                Intent(this, MainActivity::class.java)
+            } else {
+                Intent(this, AuthChoiceActivity::class.java)
+            }
+            
+            startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
         }, 3800)

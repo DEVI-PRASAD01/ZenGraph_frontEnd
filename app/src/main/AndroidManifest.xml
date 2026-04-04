@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
-
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,6 +22,30 @@
         android:theme="@style/Theme.ZenGraph"
         android:usesCleartextTraffic="true">
 
+        <!-- Firebase Messaging Service -->
+        <service
+            android:name=".notifications.ZenNotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- ✅ FIXED Daily Reminder Receiver -->
+        <receiver
+            android:name=".notifications.DailyReminderReceiver"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+        <!-- ✅ FIXED Daily Reminder Receiver -->
+        <receiver
+            android:name=".notifications.DailyReminderReceiver"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+        <!-- 🔥 ADD THIS EXACTLY HERE -->
+        <receiver android:name=".notifications.StopAlarmReceiver" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -28,6 +54,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".AuthChoiceActivity" android:theme="@style/Theme.ZenGraph.Auth" />
         <activity android:name=".SignupActivity" android:theme="@style/Theme.ZenGraph.Auth" />
         <activity android:name=".LoginActivity" android:theme="@style/Theme.ZenGraph.Auth" />
@@ -55,7 +82,6 @@
         <activity android:name=".PostSessionAiActivity" android:screenOrientation="portrait" />
         <activity android:name=".ProgressDashboardActivity" android:screenOrientation="portrait" />
         <activity android:name=".PersonalizedInsightsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".AiCoachChatActivity" android:screenOrientation="portrait" />
         <activity android:name=".AnalyticsDashboardActivity" android:screenOrientation="portrait" />
         <activity android:name=".MeditationPlanActivity" android:screenOrientation="portrait" />
         <activity android:name=".ContentLibraryActivity" android:screenOrientation="portrait" />
@@ -64,12 +90,18 @@
         <activity android:name=".SchedulerActivity" android:screenOrientation="portrait" />
         <activity android:name=".ProfileSettingsActivity" android:screenOrientation="portrait" />
         <activity android:name=".RewardSystemActivity" android:screenOrientation="portrait" />
-        <activity android:name=".OnboardingWelcomeActivity" android:screenOrientation="portrait" android:theme="@style/Theme.ZenGraph.Auth" />
+        <activity android:name=".OnboardingWelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.ZenGraph.Auth" />
+        <activity android:name=".HistoryActivity" android:screenOrientation="portrait" />
+        <activity android:name=".FriendsActivity" android:screenOrientation="portrait" />
+
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".MeditationSessionActivity" android:screenOrientation="portrait" />
+
+        <!-- ✅ Reminder Activity -->
+        <activity android:name=".ReminderActivity" android:screenOrientation="portrait" />
 
     </application>
-
-
-
-
 
 </manifest>

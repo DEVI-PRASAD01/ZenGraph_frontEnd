@@ -26,11 +26,7 @@ class SignupViewModel(private val repository: AuthRepository) : ViewModel() {
             _signupState.value = SignupState.Loading
             try {
                 val response = repository.signup(request)
-                if (response.status == "success") {
-                    _signupState.value = SignupState.Success(response)
-                } else {
-                    _signupState.value = SignupState.Error(response.message)
-                }
+                _signupState.value = SignupState.Success(response)
             } catch (e: retrofit2.HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
                 val message = try {
