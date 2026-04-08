@@ -85,9 +85,6 @@ class LiveSessionActivity : AppCompatActivity() {
         binding.btnPause.setOnClickListener   { showPauseBottomSheet() }
         binding.btnVolume.setOnClickListener     { toggleMusic() }
         binding.btnVolume.setOnLongClickListener { cycleVolume(); true }
-        binding.btnSleepMode.setOnClickListener {
-            Toast.makeText(this, "Focus Mode Active", Toast.LENGTH_SHORT).show()
-        }
 
         startTimer()
         setupMusicPlayer()

@@ -45,7 +45,34 @@ class AnalyticsDashboardActivity : AppCompatActivity() {
         loadAnalytics("day")
 
 
+        setupBottomNav()
         binding.btnBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun setupBottomNav() {
+        binding.navHome.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        binding.navLibrary.setOnClickListener {
+            startActivity(Intent(this, MeditationLibraryActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        binding.navReminder.setOnClickListener {
+            startActivity(Intent(this, ReminderActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        binding.navProgress.setOnClickListener {
+            // Already here
+        }
+        binding.navSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
             finish()
         }
     }

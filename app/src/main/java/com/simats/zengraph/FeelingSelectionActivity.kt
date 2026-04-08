@@ -45,7 +45,6 @@ class FeelingSelectionActivity : AppCompatActivity() {
                     else -> 5.0f
                 }
                 
-                val thought = binding.editTextThought.text.toString()
                 
                 kotlinx.coroutines.GlobalScope.launch(kotlinx.coroutines.Dispatchers.IO) {
                     try {

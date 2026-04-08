@@ -91,6 +91,8 @@ class SettingsActivity : AppCompatActivity() {
                         binding.settingsProgressBar.visibility = View.GONE
                         Toast.makeText(this@SettingsActivity, state.message, Toast.LENGTH_SHORT).show()
                         settingsViewModel.resetActionState()
+                        // Reload profile so the server-side photo URL is fetched and displayed
+                        if (currentUserId != -1) settingsViewModel.loadProfile(currentUserId)
                     }
                     is SettingsActionState.Error -> {
                         binding.settingsProgressBar.visibility = View.GONE
@@ -107,28 +109,19 @@ class SettingsActivity : AppCompatActivity() {
         binding.tvProfileName.text = data.name.ifEmpty { "User" }
         binding.tvProfileEmail.text = data.email
 
-        // Load profile image with Glide if available; fall back to initial avatar
+        // Load profile image with Glide into the dedicated ImageView
         if (!data.profileImage.isNullOrBlank()) {
             binding.tvProfileAvatar.visibility = View.GONE
-            // Glide loads into the avatar background ImageView if one exists;
-            // since tvProfileAvatar is a TextView used as avatar, we load via tag
+            binding.ivProfilePhoto.visibility = View.VISIBLE
             Glide.with(this)
                 .load(data.profileImage)
                 .circleCrop()
                 .placeholder(android.R.drawable.ic_menu_gallery)
                 .error(android.R.drawable.ic_menu_gallery)
-                .into(object : com.bumptech.glide.request.target.CustomTarget<android.graphics.drawable.Drawable>() {
-                    override fun onResourceReady(resource: android.graphics.drawable.Drawable, transition: com.bumptech.glide.request.transition.Transition<in android.graphics.drawable.Drawable>?) {
-                        binding.tvProfileAvatar.visibility = View.VISIBLE
-                        binding.tvProfileAvatar.background = resource
-                        binding.tvProfileAvatar.text = ""
-                    }
-                    override fun onLoadCleared(placeholder: android.graphics.drawable.Drawable?) {
-                        binding.tvProfileAvatar.background = null
-                    }
-                })
+                .into(binding.ivProfilePhoto)
         } else {
             // Show first letter of name as avatar initial
+            binding.ivProfilePhoto.visibility = View.GONE
             binding.tvProfileAvatar.visibility = View.VISIBLE
             binding.tvProfileAvatar.text = data.name.firstOrNull()?.uppercase() ?: "U"
         }
@@ -154,6 +147,15 @@ class SettingsActivity : AppCompatActivity() {
             val inputStream = contentResolver.openInputStream(uri) ?: return
             val tempFile = File.createTempFile("upload_", ".jpg", cacheDir)
             tempFile.outputStream().use { output -> inputStream.copyTo(output) }
+
+            // Immediately show local preview so user sees their photo right away
+            binding.tvProfileAvatar.visibility = View.GONE
+            binding.ivProfilePhoto.visibility = View.VISIBLE
+            Glide.with(this)
+                .load(uri)
+                .circleCrop()
+                .into(binding.ivProfilePhoto)
+
             val requestBody = tempFile.asRequestBody("image/*".toMediaTypeOrNull())
             // FastAPI expects the file field named "file"
             val part = MultipartBody.Part.createFormData("file", tempFile.name, requestBody)
@@ -166,7 +168,6 @@ class SettingsActivity : AppCompatActivity() {
     private fun setupAnimations() {
         AnimationUtils.apply3DEntrance(binding.settingsTitle)
         AnimationUtils.apply3DEntrance(binding.profileCard, 100)
-        AnimationUtils.apply3DEntrance(binding.itemProfile.parent as android.view.View, 200)
         AnimationUtils.apply3DEntrance(binding.itemNotifications.parent as android.view.View, 300)
         AnimationUtils.apply3DEntrance(binding.bottomNavContainer, 500)
         AnimationUtils.startFloatingAnimation(binding.profileCard)
@@ -185,16 +186,23 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         binding.navLibrary.setOnClickListener {
-            AnimationUtils.applyScalePop(it)
-            startAnimatedActivity(Intent(this, ContentLibraryActivity::class.java))
+            startAnimatedActivity(Intent(this, MeditationLibraryActivity::class.java))
+            finish()
+        }
+
+        binding.navReminder.setOnClickListener {
+            startAnimatedActivity(Intent(this, ReminderActivity::class.java))
+            finish()
         }
 
         binding.navProgress.setOnClickListener {
-            AnimationUtils.applyScalePop(it)
-            startAnimatedActivity(Intent(this, AnalyticsDashboardActivity::class.java))
+            startAnimatedActivity(Intent(this, ProgressDashboardActivity::class.java))
+            finish()
         }
 
-
+        binding.navSettings.setOnClickListener {
+            // Already here
+        }
 
         binding.profileCard.setOnClickListener {
             AnimationUtils.apply3DRotation(it, 10f)
@@ -204,11 +212,6 @@ class SettingsActivity : AppCompatActivity() {
         binding.btnUploadPhoto.setOnClickListener {
             AnimationUtils.applyScalePop(it)
             pickImageLauncher.launch("image/*")
-        }
-
-        binding.itemProfile.setOnClickListener {
-            AnimationUtils.applyScalePop(it)
-            startAnimatedActivity(Intent(this, EditProfileActivity::class.java))
         }
 
 

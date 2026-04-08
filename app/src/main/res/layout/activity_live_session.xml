@@ -34,34 +34,9 @@
             android:textColor="#64748B"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnNotifications"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/backButton"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <FrameLayout
-            android:id="@+id/btnNotifications"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@drawable/ic_bell"
-                app:tint="#64748B" />
-
-            <View
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_gravity="top|end"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_mic_button"
-                android:backgroundTint="#F472B6" />
-        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -191,8 +166,8 @@
             android:background="@drawable/bg_play_pause_button"
             android:elevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnSleepMode"
-            app:layout_constraintStart_toEndOf="@id/btnVolume"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -203,20 +178,6 @@
                 android:src="@android:drawable/ic_media_pause"
                 app:tint="@color/white" />
         </FrameLayout>
-
-        <!-- Sleep/Moon Button -->
-        <ImageView
-            android:id="@+id/btnSleepMode"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/bg_control_secondary"
-            android:padding="12dp"
-            android:src="@drawable/ic_moon"
-            app:layout_constraintBottom_toBottomOf="@id/btnPause"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btnPause"
-            app:tint="#64748B" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

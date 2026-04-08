@@ -23,7 +23,6 @@ class ReflectionActivity : AppCompatActivity() {
         binding.btnAnalyzeProgress.setOnClickListener {
             val intent = Intent(this, PostSessionAiActivity::class.java)
             intent.putExtra("EXTRA_POST_MOOD", selectedMood)
-            intent.putExtra("EXTRA_NOTES", binding.notesInput.text.toString())
             intent.putExtra("EXTRA_DURATION", this@ReflectionActivity.intent.getIntExtra("EXTRA_DURATION", 15))
             startActivity(intent)
         }

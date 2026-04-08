@@ -48,9 +48,6 @@ class AiPlanActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        binding.btnNotifications.setOnClickListener {
-            Toast.makeText(this, "Notifications coming soon!", Toast.LENGTH_SHORT).show()
-        }
 
         binding.btnStartPlan.setOnClickListener {
             if (planGenerated) {

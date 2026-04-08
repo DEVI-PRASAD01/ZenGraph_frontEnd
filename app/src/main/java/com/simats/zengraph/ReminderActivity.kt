@@ -47,6 +47,8 @@ class ReminderActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
+        setupBottomNav()
+
         loadSavedReminder()
         loadSavedSound()
 
@@ -81,6 +83,33 @@ class ReminderActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun setupBottomNav() {
+        findViewById<android.view.View>(R.id.navHome).setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        findViewById<android.view.View>(R.id.navLibrary).setOnClickListener {
+            startActivity(Intent(this, MeditationLibraryActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        findViewById<android.view.View>(R.id.navReminder).setOnClickListener {
+            // Already here
+        }
+        findViewById<android.view.View>(R.id.navProgress).setOnClickListener {
+            startActivity(Intent(this, AnalyticsDashboardActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        findViewById<android.view.View>(R.id.navSettings).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+    }
+
 
     // ── Ringtone picker result ────────────────────────────────────
     @Deprecated("Deprecated in Java")

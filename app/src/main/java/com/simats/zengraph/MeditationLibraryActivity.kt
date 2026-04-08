@@ -41,7 +41,34 @@ class MeditationLibraryActivity : AppCompatActivity() {
         setupRecyclerView()
         fetchSessions()
 
+        setupBottomNav()
         binding.btnBack.setOnClickListener { finish() }
+    }
+
+    private fun setupBottomNav() {
+        binding.navHome.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        binding.navLibrary.setOnClickListener {
+            // Already here
+        }
+        binding.navReminder.setOnClickListener {
+            startActivity(Intent(this, ReminderActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        binding.navProgress.setOnClickListener {
+            startActivity(Intent(this, AnalyticsDashboardActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
+        binding.navSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            overridePendingTransition(R.anim.anim_3d_enter, R.anim.anim_3d_exit)
+            finish()
+        }
     }
 
     private fun setupRecyclerView() {

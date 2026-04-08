@@ -222,7 +222,6 @@ class FriendsActivity : AppCompatActivity() {
         val layoutFlame = card.findViewById<FrameLayout>(R.id.layoutFlame)
         val tvStreak   = card.findViewById<TextView>(R.id.tvStreakCount)
         val tvStatus   = card.findViewById<TextView>(R.id.tvMeditatedStatus)
-        val btnNudge   = card.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnNudge)
         val tvInitials = card.findViewById<TextView>(R.id.tvInitials)
         val circleView = card.findViewById<View>(R.id.viewInitialsCircle)
 
@@ -254,7 +253,6 @@ class FriendsActivity : AppCompatActivity() {
             flameBg.shape = GradientDrawable.OVAL
             flameBg.setColor(Color.parseColor("#FFF3E0"))
             layoutFlame.background = flameBg
-            btnNudge.visibility = View.GONE
         } else {
             // Missed — gray flame
             tvStatus.text = "Missed today"
@@ -265,15 +263,7 @@ class FriendsActivity : AppCompatActivity() {
             flameBgGray.shape = GradientDrawable.OVAL
             flameBgGray.setColor(Color.parseColor("#F5F5F5"))
             layoutFlame.background = flameBgGray
-            if (!friend.is_self) {
-                btnNudge.visibility = View.VISIBLE
-                btnNudge.text = "Nudge ${friend.name} to meditate today"
-                btnNudge.setOnClickListener {
-                    nudgeFriend(friend.user_id, friend.name)
-                }
-            } else {
-                btnNudge.visibility = View.GONE
-            }
+            // Missed — nudge feature removed
         }
 
         card.tag = friend.user_id
