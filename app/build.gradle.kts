@@ -58,6 +58,9 @@ dependencies {
     // WorkManager for daily notifications
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
+    // Google Play Billing
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

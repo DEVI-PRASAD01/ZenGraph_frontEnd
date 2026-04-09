@@ -204,10 +204,6 @@ class SettingsActivity : AppCompatActivity() {
             // Already here
         }
 
-        binding.profileCard.setOnClickListener {
-            AnimationUtils.apply3DRotation(it, 10f)
-            startAnimatedActivity(Intent(this, EditProfileActivity::class.java))
-        }
 
         binding.btnUploadPhoto.setOnClickListener {
             AnimationUtils.applyScalePop(it)
@@ -215,6 +211,11 @@ class SettingsActivity : AppCompatActivity() {
         }
 
 
+
+        binding.itemSubscription.setOnClickListener {
+            AnimationUtils.applyScalePop(it)
+            startAnimatedActivity(Intent(this, SubscriptionActivity::class.java))
+        }
 
         binding.itemNotifications.setOnClickListener {
             AnimationUtils.applyScalePop(it)

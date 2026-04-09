@@ -44,9 +44,8 @@
                 android:backgroundTint="@color/glass_white_less"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="24dp"
-                android:clickable="true"
-                android:focusable="true">
+                android:padding="24dp">
+
 
                 <FrameLayout
                     android:layout_width="100dp"
@@ -150,6 +149,52 @@
                         android:layout_height="wrap_content"
                         android:checked="true" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <!-- Premium / Subscription Item -->
+            <LinearLayout
+                android:id="@+id/itemSubscription"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_glass_card"
+                android:backgroundTint="#1A6C5CE7"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:text="✨"
+                    android:textSize="22sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:text="Upgrade to Premium"
+                    android:textColor="#6C5CE7"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PREMIUM"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFD700"
+                    android:background="@drawable/bg_glass_card"
+                    android:backgroundTint="#336C5CE7"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp" />
+
             </LinearLayout>
 
             <!-- Logout Item -->

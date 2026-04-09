@@ -31,13 +31,7 @@
             </intent-filter>
         </service>
 
-        <!-- ✅ FIXED Daily Reminder Receiver -->
-        <receiver
-            android:name=".notifications.DailyReminderReceiver"
-            android:exported="true"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-        <!-- ✅ FIXED Daily Reminder Receiver -->
+        <!-- Daily Reminder Receiver -->
         <receiver
             android:name=".notifications.DailyReminderReceiver"
             android:exported="true"
